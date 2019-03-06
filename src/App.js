@@ -4,29 +4,30 @@ import "./App.scss";
 class App extends Component {
   constructor(props) {
     super(props);
+    const initialBoard = [
+      {
+        name: "Winnie",
+        cards: ["one", "two"],
+        className: "header-purple"
+      },
+      {
+        name: "Bob",
+        cards: ["three", "four"],
+        className: "header-teal"
+      },
+      {
+        name: "Thomas",
+        cards: ["five", "six"],
+        className: "header-navy"
+      },
+      {
+        name: "George",
+        cards: ["seven", "eight"],
+        className: "header-orange"
+      }
+    ];
     this.state = {
-      board: [
-        {
-          name: "Winnie",
-          cards: ["one", "two"],
-          className: "header-purple"
-        },
-        {
-          name: "Bob",
-          cards: ["three", "four"],
-          className: "header-teal"
-        },
-        {
-          name: "Thomas",
-          cards: ["five", "six"],
-          className: "header-navy"
-        },
-        {
-          name: "George",
-          cards: ["seven", "eight"],
-          className: "header-orange"
-        }
-      ]
+      board: []
     };
   }
 
@@ -35,8 +36,15 @@ class App extends Component {
     if (boardDataFromStorage) {
       let parsed = JSON.parse(boardDataFromStorage);
       this.setState({ board: parsed });
+    } else {
+      this.setState({ board: this.initialBoard });
     }
   }
+
+  resetBoard = () => {
+    localStorage.clear();
+    this.setState({ board: this.initialBoard });
+  };
 
   updateLocalStorage = () => {
     let { board } = this.state;
