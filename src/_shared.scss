@@ -1,0 +1,38 @@
+/*
+==========================
+COLORS
+==========================
+*/
+$darker-grey: #4f4f4f;
+$dark-grey: #7f7f7f;
+$med-grey: rgb(158, 158, 158);
+$grey: #adadad;
+$lighter-grey: #d9d9d9;
+$light-grey: #e6e6e6;
+$pale-grey: #efefef;
+$palest-grey: #f8f8f8;
+
+$blue: rgb(66, 143, 226);
+$blue-hover: rgb(79, 133, 192);
+$blue-palest: #f3f7fc;
+
+$attention-red: #f37070;
+$attention-red--light: #efb0b0;
+
+$theme-color: $blue;
+$theme-color--hover: $blue-hover;
+$theme-color--background: $blue-palest;
+
+$theme-green: #15cf89;
+$theme-green--hover: rgb(25, 194, 129);
+$theme-green--light: #78d5b2;
+
+$box-shadow: 0px 3px 6px $light-grey;
+$box-shadow-dark: 0px 3px 6px $dark-grey;
+
+/*
+==========================
+SIZING & STYLING
+==========================
+*/
+$max-width: 1180px;
