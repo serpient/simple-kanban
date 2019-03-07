@@ -4,28 +4,6 @@ import "./App.scss";
 class App extends Component {
   constructor(props) {
     super(props);
-    const initialBoard = [
-      {
-        name: "Winnie",
-        cards: ["one", "two"],
-        className: "header-purple"
-      },
-      {
-        name: "Bob",
-        cards: ["three", "four"],
-        className: "header-teal"
-      },
-      {
-        name: "Thomas",
-        cards: ["five", "six"],
-        className: "header-navy"
-      },
-      {
-        name: "George",
-        cards: ["seven", "eight"],
-        className: "header-orange"
-      }
-    ];
     this.state = {
       board: []
     };
@@ -37,14 +15,31 @@ class App extends Component {
       let parsed = JSON.parse(boardDataFromStorage);
       this.setState({ board: parsed });
     } else {
-      this.setState({ board: this.initialBoard });
+      const initialBoard = [
+        {
+          name: "Winnie",
+          cards: ["one", "two"],
+          className: "header-purple"
+        },
+        {
+          name: "Bob",
+          cards: ["three", "four"],
+          className: "header-teal"
+        },
+        {
+          name: "Thomas",
+          cards: ["five", "six"],
+          className: "header-navy"
+        },
+        {
+          name: "George",
+          cards: ["seven", "eight"],
+          className: "header-orange"
+        }
+      ];
+      this.setState({ board: initialBoard });
     }
   }
-
-  resetBoard = () => {
-    localStorage.clear();
-    this.setState({ board: this.initialBoard });
-  };
 
   updateLocalStorage = () => {
     let { board } = this.state;
@@ -76,21 +71,11 @@ class App extends Component {
     });
   };
 
-  renderItems = (data, idx) => {
-    return data.map((item, cardIdx) => {
-      return (
-        <CardItems
-          item={item}
-          cardIdx={cardIdx}
-          idx={idx}
-          moveItemTo={this.moveItemTo}
-        />
-      );
-    });
-  };
-
   render() {
     let { board } = this.state;
+    if (!board) {
+      return null;
+    }
     return (
       <div className="App">
         {board.map((data, idx) => {
@@ -116,7 +101,7 @@ const AddACard = ({ handleInput, columnIdx }) => {
 const Items = ({ data, idx, moveItemTo }) => {
   return data.map((item, cardIdx) => {
     return (
-      <CardItems
+      <CardItem
         item={item}
         cardIdx={cardIdx}
         idx={idx}
@@ -140,7 +125,7 @@ const MoveButton = ({ value, onClick, idx, cardIdx, symbol, direction }) => {
   );
 };
 
-const CardItems = ({ item, idx, cardIdx, moveItemTo }) => {
+const CardItem = ({ item, idx, cardIdx, moveItemTo }) => {
   return (
     <div key={cardIdx} className="column-item">
       {!(idx === 0) && (
